@@ -15,6 +15,7 @@ const registerUser = expressAsyncHandler(
         { expiresIn: "1d" }
       );
       res.cookie("AccessToken", token, {
+        domain: "localhost",
         path: '/',
         httpOnly: false,
         secure: false,
