@@ -13,6 +13,7 @@ const corsOptions = {
     origin: ['http://localhost:5173'], // Replace with your allowed origin(s)
     credentials: true, // Optionally, enable credentials when necessary
     optionsSuccessStatus: 200 // Optionally, set the status code for preflight requests
+    
   };
 
 app.use(cors(corsOptions));

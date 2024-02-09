@@ -15,8 +15,9 @@ const registerUser = expressAsyncHandler(
         { expiresIn: "1d" }
       );
       res.cookie("AccessToken", token, {
+        path: '/',
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: false,
         maxAge: 8600000,
       });
       res.status(200).json({
