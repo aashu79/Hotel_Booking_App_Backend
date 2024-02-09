@@ -48,9 +48,9 @@ const login = expressAsyncHandler(async (req: Request, res: Response) => {
           { expiresIn: "1d" }
         );
         res.cookie("AccessToken", token, {
-          // httpOnly: true,
-          // secure: process.env.NODE_ENV === "production",
+          httpOnly: true,
           maxAge: 8600000,
+          sameSite: 'none',
         });
         res.status(200).json({
           success: true,
