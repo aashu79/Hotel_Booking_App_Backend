@@ -10,7 +10,8 @@ import cors from "cors";
 
 
 const corsOptions = {
-    origin: ['http://localhost:5173'], // Replace with your allowed origin(s)
+    origin: ['http://127.0.0.1:5173'],
+    exposedHeaders: 'Set-Cookie',
     credentials: true, // Optionally, enable credentials when necessary
     optionsSuccessStatus: 200 // Optionally, set the status code for preflight requests
     
