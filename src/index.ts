@@ -18,6 +18,7 @@ app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('combined'));
+app.set("trust proxy", 1);
 
 // Route Import
 import authRoutes from "./routes/auth.routes";
