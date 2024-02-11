@@ -32,6 +32,20 @@ const createBooking = expressAsyncHandler(async (req: Request, res: Response) =>
 
 });
 
+const getSingleBooking = expressAsyncHandler(async (req: Request, res: Response) => {
+    const {id} = req.params;
+    if(id){
+        const booking = await Booking.findById({_id: id});
+    if(booking){
+        res.status(200).json({success: false, message: "Booking found", data: booking})
+    }else{
+        res.status(404).json({success: false, message: "Boooking not found!"})
+    }
+    }else{
+        throw Error("Id is missing")
+    }
+});
+
 const getBookings = expressAsyncHandler(async (req: Request, res: Response) => {
     const userId = (req as any).userId;
     console.log(userId);
@@ -75,4 +89,4 @@ const updateBooking = expressAsyncHandler(async(req: Request, res:Response)=>{
     }
 });
 
-export {createBooking, getBookings, deleteBooking, updateBooking};
+export {createBooking, getBookings, deleteBooking, updateBooking, getSingleBooking};
