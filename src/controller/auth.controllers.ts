@@ -18,7 +18,7 @@ const registerUser = expressAsyncHandler(
         .cookie("AccessToken", token, {
           httpOnly: true,
           sameSite: "none",
-          secure: process.env.NODE_ENV === "production",
+          secure: false,
           maxAge: 86400000,
         })
         .status(200)
@@ -52,8 +52,8 @@ const login = expressAsyncHandler(async (req: Request, res: Response) => {
         );
         res.cookie("AccessToken", token, {
           httpOnly: true,
-          // sameSite: "lax",
-          secure: process.env.NODE_ENV === "production",
+          sameSite: "none",
+          secure: false,
           maxAge: 86400000,
         });
         res.status(200).json({
