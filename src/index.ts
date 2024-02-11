@@ -8,16 +8,17 @@ import {v2 as cloudinary} from 'cloudinary';
 import cookieParser from "cookie-parser"
 import cors from "cors";
 
+app.use(cors({
+  // origin: ["http://localhost:5173"],
+  origin: true,
+  credentials: true
+}));
 
-const corsOptions = {
-    origin: ['http://localhost:5173'],
-    exposedHeaders: 'Set-Cookie',
-    credentials: true, // Optionally, enable credentials when necessary
-    optionsSuccessStatus: 200 // Optionally, set the status code for preflight requests
-    
-  };
+app.use(cookieParser())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('combined'));
 
-app.use(cors(corsOptions));
 // Route Import
 import authRoutes from "./routes/auth.routes";
 import hotelRoutes from "./routes/hotel.routes";
@@ -30,10 +31,7 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET 
   });
   
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan('combined'));
-app.use(cookieParser())
+
 
 // Route
 app.all("/", (req, res) => {

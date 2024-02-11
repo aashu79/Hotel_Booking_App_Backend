@@ -14,23 +14,23 @@ const registerUser = expressAsyncHandler(
         process.env.SECRET_KEY as string,
         { expiresIn: "1d" }
       );
-      res.cookie("AccessToken", token, {
-        domain: "localhost",
-        path: '/',
-        httpOnly: false,
-        secure: false,
-        sameSite: "none",
-        maxAge: 8600000,
-      });
-      res.status(200).json({
-        success: true,
-        message: "User registered successfully",
-        data: {
-          email: response.email,
-          firstName: response.firstName,
-          lastName: response.lastName,
-        },
-      });
+      res
+        .cookie("AccessToken", token, {
+          httpOnly: true,
+          sameSite: "none",
+          secure: process.env.NODE_ENV === "production",
+          maxAge: 86400000,
+        })
+        .status(200)
+        .json({
+          success: true,
+          message: "User registered successfully",
+          data: {
+            email: response.email,
+            firstName: response.firstName,
+            lastName: response.lastName,
+          },
+        });
     }
   }
 );
@@ -52,8 +52,9 @@ const login = expressAsyncHandler(async (req: Request, res: Response) => {
         );
         res.cookie("AccessToken", token, {
           httpOnly: true,
-          maxAge: 8600000,
-          sameSite: 'none',
+          // sameSite: "lax",
+          secure: process.env.NODE_ENV === "production",
+          maxAge: 86400000,
         });
         res.status(200).json({
           success: true,
@@ -96,17 +97,16 @@ const getUser = expressAsyncHandler(async (req, res) => {
       res.status(404).json({ success: false, message: "User not found!" });
     }
   }
-
- 
 });
-
 
 const logOut = (req: Request, res: Response) => {
   res.cookie("AccessToken", null, {
     expires: new Date(Date.now() + 5 * 1000),
-      httpOnly: true,
+    httpOnly: true,
   });
-  res.status(200).json({success: true, message: "user logged out successfully!"});
-}
+  res
+    .status(200)
+    .json({ success: true, message: "user logged out successfully!" });
+};
 
-export { registerUser, login,  logOut, getUser };
+export { registerUser, login, logOut, getUser };
