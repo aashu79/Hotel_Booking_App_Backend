@@ -17,7 +17,7 @@ const registerUser = expressAsyncHandler(
       res
         .cookie("AccessToken", token, {
           httpOnly: true,
-          sameSite: "none",
+          sameSite: "lax",
           secure: false,
           maxAge: 86400000,
         })
@@ -52,7 +52,7 @@ const login = expressAsyncHandler(async (req: Request, res: Response) => {
         );
         res.cookie("AccessToken", token, {
           httpOnly: true,
-          sameSite: "none",
+          sameSite: "lax",
           secure: false,
           maxAge: 86400000,
         });
