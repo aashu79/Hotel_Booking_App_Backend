@@ -7,6 +7,6 @@ router.get('/', authenticator, getBookings);
 router.get('/:id', authenticator, getSingleBooking);
 router.post('/', authenticator, createBooking);
 router.delete("/:bookingId", authenticator, deleteBooking);
-router.patch('/:bookingId', authenticator, updateBooking);
+router.put('/:bookingId', authenticator, updateBooking);
 
 export default router;
