@@ -16,6 +16,8 @@ const registerUser = expressAsyncHandler(
       );
       res
         .cookie("AccessToken", token, {
+          domain: "https://hotelbookingapp1.netlify.app",
+          path: "/",
           httpOnly: true,
           sameSite: "lax",
           secure: false,
@@ -51,6 +53,8 @@ const login = expressAsyncHandler(async (req: Request, res: Response) => {
           { expiresIn: "1d" }
         );
         res.cookie("AccessToken", token, {
+          domain: "https://hotelbookingapp1.netlify.app",
+          path: "/",
           httpOnly: true,
           sameSite: "lax",
           secure: false,
