@@ -8,7 +8,9 @@ import {v2 as cloudinary} from 'cloudinary';
 import cookieParser from "cookie-parser"
 import cors from "cors";
 
-app.use(cors());
+app.use(cors({
+  origin: "https://hotelbookingapp1.netlify.app/"
+}));
 
 app.use(cookieParser())
 app.use(express.json());
