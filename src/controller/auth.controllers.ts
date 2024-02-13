@@ -16,10 +16,10 @@ const registerUser = expressAsyncHandler(
       );
       res
         .cookie("AccessToken", token, {
-          domain: ".onrender.com",
+        
           path: "/",
           httpOnly: true,
-          sameSite: "lax",
+          sameSite: "none",
           secure: false,
           maxAge: 86400000,
         })
@@ -53,10 +53,10 @@ const login = expressAsyncHandler(async (req: Request, res: Response) => {
           { expiresIn: "1d" }
         );
         res.cookie("AccessToken", token, {
-          domain: ".onrender.com",
+          
           path: "/",
           httpOnly: true,
-          sameSite: "lax",
+          sameSite: "none",
           secure: false,
           maxAge: 86400000,
         });
