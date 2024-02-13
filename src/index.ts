@@ -9,8 +9,8 @@ import cookieParser from "cookie-parser"
 import cors from "cors";
 
 app.use(cors({
-  origin: "https://hotelbookingapp1.netlify.app/",
-  
+  origin: "https://hotelbookingapp1.netlify.app",
+
   credentials: true,
 }));
 
