@@ -8,7 +8,7 @@ import {v2 as cloudinary} from 'cloudinary';
 import cookieParser from "cookie-parser"
 import cors from "cors";
 
-app.use(cors({credentials: true}));
+app.use(cors());
 
 app.use(cookieParser())
 app.use(express.json());
