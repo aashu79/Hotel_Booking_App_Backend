@@ -8,12 +8,12 @@ import {v2 as cloudinary} from 'cloudinary';
 import cookieParser from "cookie-parser"
 import cors from "cors";
 
+app.set("trust proxy", 1)
 app.use(cors({
   origin: ["https://hotel-booking-app-5adp.onrender.com", "https://hotelbookingapp1.netlify.app"],
 
   credentials: true,
 }));
-app.set("trust proxy", 1)
 
 app.use(cookieParser())
 app.use(express.json());
