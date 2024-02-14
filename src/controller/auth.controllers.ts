@@ -9,21 +9,22 @@ const registerUser = expressAsyncHandler(
     const user: UserType = await req.body;
     const response = await User.create(user);
     if (response) {
-      const token = jwt.sign(
-        { id: response._id },
-        process.env.SECRET_KEY as string,
-        { expiresIn: "1d" }
-      );
-      res
-        .cookie("AccessToken", token, {
+      // const token = jwt.sign(
+      //   { id: response._id },
+      //   process.env.SECRET_KEY as string,
+      //   { expiresIn: "1d" }
+      // );
+      // res
+      //   .cookie("AccessToken", token, {
         
-          path: "/",
-          httpOnly: true,
-          sameSite: "none",
-          secure: false,
-          maxAge: 86400000,
-        })
-        .status(200)
+      //     path: "/",
+      //     httpOnly: true,
+      //     sameSite: "none",
+      //     secure: false,
+      //     maxAge: 86400000,
+      //   })
+    
+        res.status(200)
         .json({
           success: true,
           message: "User registered successfully",
@@ -52,18 +53,19 @@ const login = expressAsyncHandler(async (req: Request, res: Response) => {
           process.env.SECRET_KEY as string,
           { expiresIn: "1d" }
         );
-        res.cookie("AccessToken", token, {
+        // res.cookie("AccessToken", token, {
           
-          path: "/",
-          httpOnly: true,
-          sameSite: "none",
-          secure: false,
-          maxAge: 86400000,
-        });
+        //   path: "/",
+        //   httpOnly: true,
+        //   sameSite: "none",
+        //   secure: false,
+        //   maxAge: 86400000,
+        // });
         res.status(200).json({
           success: true,
           message: "Login Successful",
           data: {
+            AccessToken: token,
             firstName: user.firstName,
             lastName: user.lastName,
             userType: user.userType,

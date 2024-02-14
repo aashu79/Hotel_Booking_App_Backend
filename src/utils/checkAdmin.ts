@@ -6,7 +6,9 @@ import User from "../models/user.model";
 
 
 const checkAdmin = async(req: Request, res: Response, next: NextFunction)=>{
-const token = req.cookies.AccessToken;
+    const { authorization } = req.headers;
+  
+    const token = authorization && authorization?.split(" ").pop();
 if(!token){
     res.status(403).json({success: false, message: "You are not authorized"})
 

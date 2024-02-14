@@ -10,7 +10,7 @@ import cors from "cors";
 
 app.set("trust proxy", 1)
 app.use(cors({
-  origin: ["https://hotel-booking-app-5adp.onrender.com", "https://hotelbookingapp1.netlify.app"],
+  origin: ["https://hotel-booking-app-5adp.onrender.com", "https://hotelbookingapp1.netlify.app", "http://localhost:5173"],
 
   credentials: true,
 }));
